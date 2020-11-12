@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light">
+        <div class="link-wrapper">
+            <ul class="navbar-nav links-left">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+            <span class="navbar-brand mb-0 h1 centered">Task Tracker</span>
+            <ul class="navbar-nav links-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add Group</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="group-wrapper">
+            <div class="row no-gutters">
+                <div class="col-10 col-sm-11">
+                    <h3 class="group-title" data-group="General"> General</h3>
+                </div>
+                <div class="col-2 col-sm-1">
+                    <h3 class="group-edit">...</h3>
+                </div>
+            </div>
+            <div class="todo-wrapper">
+                <div class="row no-gutters todo-header-row">
+                    <div class="col-10 col-sm-6 col-md-7 todo-table-title todo-title-title">Title</div>
+                    <div class="col-2 todo-table-title todo-priority-title d-none d-sm-block">Priority</div>
+                    <div class="col-3 col-md-2 todo-table-title todo-due-title-date d-none d-sm-block">Due Date</div>
+                    <div class="col-2 col-sm-1 todo-table-title todo-edit-title"></div>
+                </div>
+                <div class="row no-gutters todo-rows">
+                    <div class="col-10 col-sm-6 col-md-7 todo-title">
+                        <input type="checkbox" name="" class="todo-complete">
+                        Example To-Do Title</div>
+                    <div class="col-2 todo-priority d-none d-sm-block">High</div>
+                    <div class="col-3 col-md-2 todo-due-date d-none d-sm-block">mm/dd/yyyy</div>
+                    <div class="col-2 col-sm-1 todo-edit">...</div>
+                </div>
+            </div>
+            <div class="col-12"><span class="new-todo">+ Add new task</span></div>
+        </div>
+    </div>
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>

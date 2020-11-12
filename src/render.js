@@ -79,7 +79,7 @@ const createDom = {
         todoHeaderRow.appendChild(todoHeaderEdit);
         todoWrapper.appendChild(todoHeaderRow);
 
-        if(group.todoArray.length > 0){
+        if (group.todoArray.length > 0) {
             group.todoArray.forEach(todo => {
                 let createdTodoDom = createDom.createTodoDom(todo);
                 todoWrapper.appendChild(createdTodoDom);
@@ -98,9 +98,35 @@ const createDom = {
         groupWrapperDiv.appendChild(addTodoDiv);
 
         return groupWrapperDiv
+    },
+};
+
+const render = {
+    Page: todos => {
+        todos.groups.forEach(group => {
+            let groupDomData = createDom.createGroupDom(group);
+            let container = document.querySelector("#todo-container");
+            container.appendChild(groupDomData);
+        })
+    },
+    newGroup: groupDomData => {
+        let todoContainer = document.querySelector("#todo-container");
+        todoContainer.appendChild(groupDomData);
+    },
+    toggleNewGroupForm: () => {
+        let overlay = document.querySelector("#overlay");
+        let groupPopUp = document.querySelector(".pop-up-container");
+        let newGroupFormBtn = document.querySelector("#add-group-nav-btn");
+        let closeNewGroupPopup = document.querySelector("#close-new-group-popup");
+
+        let toggleForm = () => {
+            overlay.classList.toggle("overlay-active");
+            groupPopUp.classList.toggle("hidden");
+        }
+
+        closeNewGroupPopup.addEventListener("click", toggleForm);
+        newGroupFormBtn.addEventListener("click", toggleForm)
     }
-
-
 }
 
-export { createDom, }
+export { createDom, render }
