@@ -1,0 +1,40 @@
+body{
+    background: rgb(199, 224, 240);
+    color: rgb(20, 20, 20);
+}
+
+.navbar{
+    margin-bottom: 20px;
+    background-color: rgba(240, 240, 240, 0.9);
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+.centered{
+    margin: auto;
+    display: inline-block;
+}
+
+.todo-table-title{
+    font-weight: 700;
+}
+
+.todo-wrapper{
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.todo-header-row{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(120, 120, 120);
+}
+
+.todo-rows{
+    margin-bottom: 10px;
+}
+
