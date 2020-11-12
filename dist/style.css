@@ -1,24 +1,82 @@
+html {
+    height: 100%;
+  }
+
 body{
-    background: rgb(199, 224, 240);
+    background: hsla(16, 100%, 76%, 1);
+    background: linear-gradient(135deg, hsla(16, 100%, 76%, 1) 0%, hsla(49, 100%, 81%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(16, 100%, 76%, 1) 0%, hsla(49, 100%, 81%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(16, 100%, 76%, 1) 0%, hsla(49, 100%, 81%, 1) 100%);
     color: rgb(20, 20, 20);
+    min-height: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
+/* Navbar */
 .navbar{
     margin-bottom: 20px;
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(250, 250, 250, 0.85);
+    width: 100% !important;
+}
+
+.link-wrapper{
+    width: 100%;
+    display: flex;
 }
 
 .navbar-brand {
-    font-size: 24px;
+    font-size: 1.75rem;
 }
 
+.navbar-brand, h1, h2, h3 {
+    font-family: 'Courgette', cursive;
+}
 .centered{
     margin: auto;
     display: inline-block;
 }
 
+.navbar-nav{
+    margin: auto;
+    min-width: 90px;
+}
+
+.links-left{
+    margin-left: 30px;
+}
+.links-right{
+    margin-right: 30px;
+    text-align: right;
+}
+@media (max-width: 576px) {
+    .links-left{
+        margin-left: 0px;
+    }
+    .links-right{
+        margin-right: 0px;
+    }
+}
+
+/* todo table */
 .todo-table-title{
     font-weight: 700;
+}
+
+.group-title{
+    padding-left: 10px;
+}
+
+.group-edit{
+    opacity: 0.5;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.group-edit:hover{
+    opacity: 1;
+    transition: all ease-in-out 0.3s;
 }
 
 .todo-wrapper{
@@ -36,5 +94,46 @@ body{
 
 .todo-rows{
     margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom:1px solid lightgrey;
 }
 
+.todo-rows div, .todo-header-row div {
+    text-align: center;
+}
+
+.todo-rows .todo-title, .todo-header-row .todo-title-title{
+    text-align: left;
+}
+
+.todo-title span{
+    margin-left: 5px;
+}
+
+.todo-edit{
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all ease-in-out 0.3s;
+}
+
+.todo-edit:hover{
+    opacity: 1;
+    transition: all ease-in-out 0.3s;
+}
+
+.new-todo{
+    padding:5px;
+    display: inline-block;
+    border: 1px solid rgba(120, 120, 120, 0);
+    border-radius: 5px;
+    margin: 5px;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.new-todo:hover{
+    border: 1px solid rgba(120, 120, 120, 1);
+    transition: all ease-in-out 0.3s;
+    opacity: 1;
+}
