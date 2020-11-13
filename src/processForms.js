@@ -7,19 +7,12 @@ const processForms = {
 
         todoActions.addGroup(newGroupTitle);
 
-        let groupIndex = todos.groups.findIndex((todoObj) => todoObj.groupTitle === newGroupTitle);
-        let newGroup = todos.groups[groupIndex];
-
-        let newGroupDomData = createDom.createGroupDom(newGroup);
-
-        render.newGroup(newGroupDomData);
-
+        render.clearPage();
+        render.page(todos);
         render.toggleOverlay();
         render.togglePopUp(".ng-pop-up");
-        document.querySelector("#new-group-title-input").value = "";
 
-        setUpListeners.editGroupForm();
-        setUpListeners.newTaskBtns();
+        document.querySelector("#new-group-title-input").value = "";
     },
     editGroup: () => {
         let groupID = document.querySelector(".group-name-to-edit").textContent;
