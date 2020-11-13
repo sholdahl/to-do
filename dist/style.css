@@ -90,6 +90,7 @@ body{
     cursor: pointer;
     text-align: center;
     padding-right: 10px;
+    user-select: none; 
 }
 
 .group-edit:hover{
@@ -133,6 +134,7 @@ body{
     cursor: pointer;
     opacity: 0.5;
     transition: all ease-in-out 0.3s;
+    user-select: none; 
 }
 
 .todo-edit:hover{
@@ -152,7 +154,7 @@ body{
 }
 
 .new-todo:hover{
-    border: 1px solid rgba(120, 120, 120, 1);
+    /* border: 1px solid rgba(120, 120, 120, 1); */
     transition: all ease-in-out 0.3s;
     opacity: 1;
 }
@@ -222,4 +224,22 @@ body{
 
 .btn-yellow:focus{
     box-shadow: none;
+}
+
+.form-group h4{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+#delete-group-form-btn{
+    float: right;
+    background-color: rgb(230, 128, 128);
+    transition: all ease-in-out 0.3s;
+    border: none;
+}
+
+
+#delete-group-form-btn:hover{
+    background-color: rgb(240, 80, 80);
+    transition: all ease-in-out 0.3s;   
 }

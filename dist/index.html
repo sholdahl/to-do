@@ -16,41 +16,104 @@
 
 <body>
 
-        <nav class="navbar navbar-light">
-            <div class="link-wrapper">
-                <ul class="navbar-nav links-left">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                </ul>
-                <span class="navbar-brand mb-0 h1 centered">Task Tracker</span>
-                <ul class="navbar-nav links-right">
-                    <li class="nav-item">
-                        <a class="nav-link" id="add-group-nav-btn" href="#">Add Group</a>
-                    </li>
-                </ul>
+    <nav class="navbar navbar-light">
+        <div class="link-wrapper">
+            <ul class="navbar-nav links-left">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+            <span class="navbar-brand mb-0 h1 centered">Task Tracker</span>
+            <ul class="navbar-nav links-right">
+                <li class="nav-item">
+                    <a class="nav-link" id="add-group-nav-btn" href="#">Add Group</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="todo-container" class="container"></div>
+
+    <div class="container pop-up-container ng-pop-up hidden">
+        <div class="row">
+            <div class="col-12 col-md-6 form-col">
+                <div class="pop-up-form">
+                    <div class="form-group">
+                        <h4 class="text-center">Add a New Task Group</h4>
+                        <label>Group Title</label>
+                        <span id="close-new-group-popup" class="close-popup">X</span>
+                        <input type="text" class="form-control form-input" id="new-group-title-input"
+                            placeholder="Enter Group Name" id="new-group-title">
+                    </div>
+                    <button id="new-group-btn" class="btn btn-yellow">Submit</button>
+                </div>
             </div>
-        </nav>
+        </div>
+    </div>
 
-        <div id="todo-container" class="container"></div>
-
-        <div class="container pop-up-container hidden">
-            <div class="row">
-                <div class="col-12 col-md-6 form-col">
-                    <div class="pop-up-form">
-                        <div class="form-group">
-                            <h4 class="text-center">Add a New Task Group</h4>
-                            <label for="exampleInputEmail1">Group Title</label>
-                            <span id="close-new-group-popup" class="close-popup">X</span>
-                            <input type="text" class="form-control form-input" id="group-title"
-                                placeholder="Enter Group Name" id="new-group-title">
-                        </div>
-                        <button id="new-group-btn" class="btn btn-yellow">Submit</button>
+    <div class="container pop-up-container eg-pop-up hidden">
+        <div class="row">
+            <div class="col-12 col-md-6 form-col">
+                <div class="pop-up-form">
+                    <div class="form-group">
+                        <h4 class="text-center">Edit Task Group - <span class="group-name-to-edit">General</span></h4>
+                        <label>Group Title</label>
+                        <span id="" class="close-popup">X</span>
+                        <input type="text" class="form-control form-input" id="edit-group-title-input"
+                            value="Group Title" id="new-group-title">
+                    </div>
+                    <div class="edit-group-btn-wrapper">
+                        <button id="edit-group-form-btn" class="btn btn-yellow">Submit</button>
+                        <button id="delete-group-form-btn" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="overlay" class="">
+    </div>
+
+    <div class="container pop-up-container nt-pop-up hidden">
+        <div class="row">
+            <div class="col-12 col-md-6 form-col">
+                <div class="pop-up-form">
+                    <div class="form-group">
+                        <h4 class="text-center">Add a New Task to: <span id="new-tasks-group">General</span></h4>
+                        <span id="close-new-group-popup" class="close-popup">X</span>
+                        <div class="form-group">
+                            <label>Task Title</label>
+                            <input type="text" class="form-control form-input" id="new-task-title-input"
+                                placeholder="Enter Task Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Task Description</label>
+                            <input type="text" class="form-control form-input" id="new-task-desc-input"
+                                placeholder="Enter Task Description">
+                        </div>
+                        <div class="form-group">
+                            <label>Task Due Date</label>
+                            <input type="date" class="form-control form-input" id="new-task-due-date-input"
+                                placeholder="Enter Task Due Date">
+                        </div>
+                        <div class="form-group">
+                            <label>Task Priority</label>
+                            <select id="new-task-priority-input" name="priority" class="form-control">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Task Notes</label>
+                            <textarea type="text" class="form-control form-input" id="new-task-notes-input"
+                                placeholder="Enter Task Notes" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button id="new-task-btn" class="btn btn-yellow">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="">
     </div>
     <script src="main.js"></script>
 

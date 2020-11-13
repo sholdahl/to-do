@@ -1,3 +1,5 @@
+import { processForms } from './processForms';
+
 const createDom = {
     createTodoDom: todo => {
         let todoRowDiv = document.createElement("div");
@@ -64,7 +66,6 @@ const createDom = {
         todoHeaderEdit.classList.add("col-2", "col-sm-1", "todo-table-title", "todo-edit-title")
 
         groupWrapperDiv.setAttribute('data-group', group.groupTitle);
-        todoWrapper.setAttribute('data-group', group.groupTitle);
 
         groupTitleH3.textContent = group.groupTitle;
         groupEditH3.textContent = "...";
@@ -102,31 +103,117 @@ const createDom = {
 };
 
 const render = {
-    Page: todos => {
+    page: todos => {
         todos.groups.forEach(group => {
             let groupDomData = createDom.createGroupDom(group);
             let container = document.querySelector("#todo-container");
             container.appendChild(groupDomData);
-        })
+        });
+        setUpListeners.editGroupForm();
+        setUpListeners.newTaskForm();
+    },
+    initialPage: todos => {
+        todos.groups.forEach(group => {
+            let groupDomData = createDom.createGroupDom(group);
+            let container = document.querySelector("#todo-container");
+            container.appendChild(groupDomData);
+        });
+        setUpListeners.newGroupForm();
+        setUpListeners.formCloseBtns();
+        setUpListeners.editGroupForm();
+        setUpListeners.newTaskForm();
+    },
+    clearPage: () => {
+        let todoContainer = document.querySelector("#todo-container");
+        while (todoContainer.firstChild) {
+            todoContainer.removeChild(todoContainer.lastChild);
+          };
     },
     newGroup: groupDomData => {
         let todoContainer = document.querySelector("#todo-container");
         todoContainer.appendChild(groupDomData);
     },
-    toggleNewGroupForm: () => {
+    toggleOverlay: () => {
         let overlay = document.querySelector("#overlay");
-        let groupPopUp = document.querySelector(".pop-up-container");
+        overlay.classList.toggle("overlay-active");
+    },
+    editGroupForm: (e) => {
+        let groupID = e.path[3].dataset.group;
+        let groupNameInEditTitle = document.querySelector(".group-name-to-edit");
+        let groupNameEditInput = document.querySelector("#edit-group-title-input");
+
+        groupNameInEditTitle.textContent = groupID;
+        groupNameEditInput.value = groupID;
+
+        render.toggleOverlay();
+        render.togglePopUp(".eg-pop-up");
+    },
+    togglePopUp: elID => {
+        let el = document.querySelector(elID);
+        el.classList.toggle("hidden");
+    },
+    newTaskForm: (e) => {
+        let groupID = e.path[2].dataset.group;
+        let newTaskGroupTitle = document.querySelector("#new-tasks-group");
+        newTaskGroupTitle.textContent = groupID;
+        
+        render.togglePopUp(".nt-pop-up");
+        render.toggleOverlay();
+    },
+    updateDisplayData: () => {
+        let groups = document.querySelectorAll(".group-wrapper");
+        groups.forEach(group => {
+            let groupID = group.dataset.group;
+            let groupTitle = group.childNodes[0].childNodes[0].childNodes[0].textContent;
+            groupTitle = groupID;
+        })
+    }
+};
+
+const setUpListeners = {
+    newGroupForm: () => {
+        let overlay = document.querySelector("#overlay");
+        let groupPopUp = document.querySelector(".ng-pop-up");
         let newGroupFormBtn = document.querySelector("#add-group-nav-btn");
-        let closeNewGroupPopup = document.querySelector("#close-new-group-popup");
 
         let toggleForm = () => {
             overlay.classList.toggle("overlay-active");
             groupPopUp.classList.toggle("hidden");
         }
 
-        closeNewGroupPopup.addEventListener("click", toggleForm);
         newGroupFormBtn.addEventListener("click", toggleForm)
-    }
+    },
+    editGroupForm: () => {
+        let groupEditBtns = document.querySelectorAll(".group-edit");
+        groupEditBtns.forEach(btn => {
+            btn.addEventListener("click", render.editGroupForm)
+        });
+
+        let groupEditSubmitBtn = document.querySelector("#edit-group-form-btn");
+        groupEditSubmitBtn.addEventListener("click", processForms.editGroup);
+
+        let groupEditDeleteBtn = document.querySelector("#delete-group-form-btn");
+        groupEditDeleteBtn.addEventListener("click", processForms.deleteGroup)
+    },
+    formCloseBtns: () => {
+        let clostBtns = document.querySelectorAll(".close-popup");
+        let toggleForm = (e) => {
+            e.path[5].classList.toggle("hidden");
+            render.toggleOverlay();
+        }
+        clostBtns.forEach(btn => {
+            btn.addEventListener("click", toggleForm)
+        })
+    },
+    newTaskForm: () => {
+        let newTaskBtns = document.querySelectorAll(".new-todo");
+        let newTaskSubmitBtn = document.querySelector("#new-task-btn");
+        newTaskBtns.forEach(btn => {
+            btn.addEventListener("click", render.newTaskForm)
+        });
+        newTaskSubmitBtn.addEventListener("click", processForms.newTask)
+    },
+
 }
 
-export { createDom, render }
+export { createDom, render, setUpListeners }
