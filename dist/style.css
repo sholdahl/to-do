@@ -231,15 +231,18 @@ body{
     margin-right: 25px;
 }
 
-#delete-group-form-btn{
+.delete-btn{
     float: right;
-    background-color: rgb(230, 128, 128);
+    background-color: rgb(230, 128, 128) !important;
     transition: all ease-in-out 0.3s;
     border: none;
 }
 
-
-#delete-group-form-btn:hover{
-    background-color: rgb(240, 80, 80);
+.delete-btn:hover{
+    background-color: rgb(240, 80, 80) !important;
     transition: all ease-in-out 0.3s;   
+}
+
+.delete-btn:focus{
+    box-shadow: none;
 }

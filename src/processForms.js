@@ -65,6 +65,17 @@ const processForms = {
         document.querySelector("#new-task-priority-input").value = ""
         document.querySelector("#new-task-notes-input").value = ""
 
+    },
+    editTask: (e) => {
+        let groupID = document.querySelector("#edit-task-title-input").dataset.group;
+        let taskTitle = document.querySelector("#edit-task-title-input").value;
+        let taskDescription = document.querySelector("#edit-task-desc-input").value;
+        let taskDueDate = document.querySelector("#edit-task-due-date-input").value;
+        let taskPriority = document.querySelector("#edit-task-priority-input").value;
+        let taskNotes = document.querySelector("#edit-task-notes-input").value;
+
+
+        groupID = "";
     }
 
 }

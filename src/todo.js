@@ -78,7 +78,7 @@ const todos = {
         {
             groupTitle: "General",
             todoArray: [
-                { title: "Example Title", desc: "This is an example description of the to-do", dueDate: "mm/dd/yyyy", priority: "Low", notes: "", complete: true }
+                { title: "Example Title", desc: "This is an example description of the to-do", dueDate: "2020-11-20", priority: "Low", notes: "This is an example of a note.", complete: true }
             ]
         }
     ]

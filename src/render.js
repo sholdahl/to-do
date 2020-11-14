@@ -1,4 +1,5 @@
 import { processForms } from './processForms';
+import { todos } from './todo'
 
 const createDom = {
     createTodoDom: todo => {
@@ -111,6 +112,7 @@ const render = {
         });
         setUpListeners.editGroupForm();
         setUpListeners.newTaskForm();
+        setUpListeners.editTaskForm();
     },
     initialPage: todos => {
         todos.groups.forEach(group => {
@@ -122,12 +124,13 @@ const render = {
         setUpListeners.formCloseBtns();
         setUpListeners.editGroupForm();
         setUpListeners.newTaskForm();
+        setUpListeners.editTaskForm();
     },
     clearPage: () => {
         let todoContainer = document.querySelector("#todo-container");
         while (todoContainer.firstChild) {
             todoContainer.removeChild(todoContainer.lastChild);
-          };
+        };
     },
     newGroup: groupDomData => {
         let todoContainer = document.querySelector("#todo-container");
@@ -156,7 +159,7 @@ const render = {
         let groupID = e.path[2].dataset.group;
         let newTaskGroupTitle = document.querySelector("#new-tasks-group");
         newTaskGroupTitle.textContent = groupID;
-        
+
         render.togglePopUp(".nt-pop-up");
         render.toggleOverlay();
     },
@@ -167,7 +170,33 @@ const render = {
             let groupTitle = group.childNodes[0].childNodes[0].childNodes[0].textContent;
             groupTitle = groupID;
         })
-    }
+    },
+    editTaskForm: (e) => {
+        let groupID = e.path[3].dataset.group;
+        let taskTitle = e.path[1].childNodes[0].childNodes[1].textContent;
+
+        let taskTitleDisplay = document.querySelector("#task-name-to-edit");
+        let taskEditTitle = document.querySelector("#edit-task-title-input");
+        let taskDescription = document.querySelector("#edit-task-desc-input");
+        let taskDueDate = document.querySelector("#edit-task-due-date-input");
+        let taskPriority = document.querySelector("#edit-task-priority-input");
+        let taskNotes = document.querySelector("#edit-task-notes-input");
+
+
+        let groupIndex = todos.groups.findIndex((todoObj) => todoObj.groupTitle === groupID);
+        let taskIndex = todos.groups[groupIndex].todoArray.findIndex((todoObj) => todoObj.title === taskTitle);
+        
+        taskDescription.value = todos.groups[groupIndex].todoArray[taskIndex].desc;
+        taskDueDate.value = todos.groups[groupIndex].todoArray[taskIndex].dueDate;
+        taskPriority.value = todos.groups[groupIndex].todoArray[taskIndex].priority.toLowerCase();
+        taskNotes.value = todos.groups[groupIndex].todoArray[taskIndex].notes;
+        taskTitleDisplay.textContent = taskTitle;
+        taskTitleDisplay.dataset.group = groupID;
+        taskEditTitle.value = taskTitle;
+
+        render.toggleOverlay();
+        render.togglePopUp(".et-pop-up");
+    },
 };
 
 const setUpListeners = {
@@ -213,6 +242,12 @@ const setUpListeners = {
         });
         newTaskSubmitBtn.addEventListener("click", processForms.newTask)
     },
+    editTaskForm: () => {
+        let editTaskBtns = document.querySelectorAll(".todo-edit");
+        editTaskBtns.forEach(btn => {
+            btn.addEventListener("click", render.editTaskForm)
+        })
+    }
 
 }
 
