@@ -1,5 +1,5 @@
-import { factories, todoActions, todos } from './todo';
-import {createDom, render, setUpListeners} from './render';
+import { todos } from './todo';
+import {render } from './render';
 import {processForms} from './processForms';
 
 let newGroupBtn = document.querySelector("#new-group-btn");

@@ -38,7 +38,7 @@ const todoActions = {
         todos.groups.splice(groupIndex, 1);
     },
     moveTodo: (oldGroupTitle, newGroupTitle, todoID) => {
-        todoToMove = null;
+        let todoToMove = null;
         todos.groups.forEach(group => {
             if (group.groupTitle === oldGroupTitle) {
                 todoToMove = group.todoArray[parseInt(todoID)];

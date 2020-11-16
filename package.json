@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sholdahl/to-do#readme",
   "devDependencies": {
+    "eslint": "^7.13.0",
     "webpack": "^5.4.0",
     "webpack-cli": "^4.2.0"
   },
