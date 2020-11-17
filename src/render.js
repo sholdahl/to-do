@@ -1,5 +1,5 @@
 import { processForms } from "./processForms";
-import { todos, todoActions } from "./todo";
+import { todos } from "./todo";
 
 const createDom = {
   createTodoDom: (todo) => {
