@@ -1,9 +1,6 @@
-import { todos } from './todo';
+import { todos, todoActions } from './todo';
 import {render } from './render';
-import {processForms} from './processForms';
 
-let newGroupBtn = document.querySelector("#new-group-btn");
-newGroupBtn.addEventListener("click", processForms.newGroup);
-
+todoActions.checkLocalStorage();
 render.initialPage(todos);
 

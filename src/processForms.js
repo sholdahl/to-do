@@ -27,6 +27,7 @@ const processForms = {
     render.page(todos);
     render.toggleOverlay();
     render.togglePopUp(".eg-pop-up");
+    todoActions.setLocalData();
   },
   deleteGroup: () => {
     let groupID = document.querySelector(".group-name-to-edit").textContent;

@@ -14,6 +14,7 @@ const todoActions = {
         todos.groups.push(newTodoGroup);
         console.log(`A new to-do group titled ${groupTitle} was added. New to-do Group data below:`);
         console.table(newTodoGroup);
+        todoActions.setLocalData();
     },
     addTodo: (title, desc, dueDate, priority, notes, complete, targetGroup) => {
         let newTodo = factories.todoFactory(title, desc, dueDate, priority, notes, complete, targetGroup);
@@ -24,18 +25,21 @@ const todoActions = {
                 console.table(newTodo);
                 return
             }
-        })
+        });
+        todoActions.setLocalData();
     },
     deleteTodo: (targetGroup, todoID) => {
         todos.groups.forEach(group => {
             if (group.groupTitle === targetGroup) {
                 group.todoArray.splice(parseInt(todoID), 1)
             }
-        })
+        });
+        todoActions.setLocalData();
     },
     deleteGroup: (targetGroup) => {
         let groupIndex = todos.groups.findIndex((todoObj) => todoObj.groupTitle === targetGroup);
         todos.groups.splice(groupIndex, 1);
+        todoActions.setLocalData();
     },
     moveTodo: (oldGroupTitle, newGroupTitle, todoID) => {
         let todoToMove = null;
@@ -52,7 +56,8 @@ const todoActions = {
                 console.table(todoToMove);
                 return
             }
-        })
+        });
+        todoActions.setLocalData();
     },
     updateTodo: (targetGroup, todoID, newComplete, newTitle, newDesc, newDueDate, newPriority, newNotes) => {
         todos.groups.forEach(group => {
@@ -69,11 +74,30 @@ const todoActions = {
                 console.log("The record has been updated. Updated to-do:")
                 console.table(group.todoArray[todoID])
             }
-        })
-    }
+        });
+        todoActions.setLocalData();
+    },
+    setLocalData: () => {
+        const todoDataString = JSON.stringify(todos);
+        localStorage.setItem("todoData", todoDataString);
+        console.log("task data has been saved to local storage.")
+    },
+    useLocalData: async () => {
+        const todoDataString = localStorage.getItem("todoData");
+        const todoData = JSON.parse(todoDataString);
+        todos = todoData;
+        console.log("task data has been loaded from local storage");
+        console.log(todos);
+    },
+    checkLocalStorage: () => {
+        if (localStorage.getItem("todoData")) {
+            todoActions.useLocalData();
+        }
+        todos = JSON.parse(localStorage.getItem("todoData")); 
+      },
 };
 
-const todos = {
+let todos = {
     groups: [
         {
             groupTitle: "General",
@@ -81,7 +105,9 @@ const todos = {
                 { title: "Example Title", desc: "This is an example description of the to-do", dueDate: "2020-11-20", priority: "Low", notes: "This is an example of a note.", complete: true }
             ]
         }
-    ]
+    ],
 };
+
+
 
 export { factories, todoActions, todos }

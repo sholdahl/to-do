@@ -1,5 +1,5 @@
 import { processForms } from "./processForms";
-import { todos } from "./todo";
+import { todos, todoActions } from "./todo";
 
 const createDom = {
   createTodoDom: (todo) => {
@@ -14,19 +14,8 @@ const createDom = {
     todoRowDiv.classList.add("row", "no-gutters", "todo-rows");
     todoTitleDiv.classList.add("col-10", "col-sm-6", "col-md-7", "todo-title");
     todoCompleteDiv.classList.add("todo-complete");
-    todoPriorityDiv.classList.add(
-      "col-2",
-      "todo-priority",
-      "d-none",
-      "d-sm-block"
-    );
-    todoDueDateDiv.classList.add(
-      "col-3",
-      "col-md-2",
-      "todo-due-date",
-      "d-none",
-      "d-sm-block"
-    );
+    todoPriorityDiv.classList.add("col-2", "todo-priority", "d-none", "d-sm-block");
+    todoDueDateDiv.classList.add("col-3", "col-md-2", "todo-due-date", "d-none", "d-sm-block");
     todoEditDiv.classList.add("col-2", "col-sm-1", "todo-edit");
 
     todoTitleSpan.textContent = todo.title;
@@ -93,12 +82,7 @@ const createDom = {
       "d-none",
       "d-sm-block"
     );
-    todoHeaderEdit.classList.add(
-      "col-2",
-      "col-sm-1",
-      "todo-table-title",
-      "todo-edit-title"
-    );
+    todoHeaderEdit.classList.add("col-2", "col-sm-1", "todo-table-title", "todo-edit-title");
 
     groupWrapperDiv.setAttribute("data-group", group.groupTitle);
 
@@ -203,8 +187,7 @@ const render = {
     let groups = document.querySelectorAll(".group-wrapper");
     groups.forEach((group) => {
       let groupID = group.dataset.group;
-      let groupTitle =
-        group.childNodes[0].childNodes[0].childNodes[0].textContent;
+      let groupTitle = group.childNodes[0].childNodes[0].childNodes[0].textContent;
       // eslint-disable-next-line no-unused-vars
       groupTitle = groupID;
     });
@@ -221,19 +204,14 @@ const render = {
     let taskNotes = document.querySelector("#edit-task-notes-input");
     let taskCompleted = document.querySelector("#edit-task-completed");
 
-
-    let groupIndex = todos.groups.findIndex(
-      (todoObj) => todoObj.groupTitle === groupID
-    );
+    let groupIndex = todos.groups.findIndex((todoObj) => todoObj.groupTitle === groupID);
     let taskIndex = todos.groups[groupIndex].todoArray.findIndex(
       (todoObj) => todoObj.title === taskTitle
     );
 
     taskDescription.value = todos.groups[groupIndex].todoArray[taskIndex].desc;
     taskDueDate.value = todos.groups[groupIndex].todoArray[taskIndex].dueDate;
-    taskPriority.value = todos.groups[groupIndex].todoArray[
-      taskIndex
-    ].priority.toLowerCase();
+    taskPriority.value = todos.groups[groupIndex].todoArray[taskIndex].priority.toLowerCase();
     taskNotes.value = todos.groups[groupIndex].todoArray[taskIndex].notes;
     taskCompleted.checked = todos.groups[groupIndex].todoArray[taskIndex].complete;
     taskTitleDisplay.textContent = taskTitle;
@@ -244,7 +222,7 @@ const render = {
 
     render.toggleOverlay();
     render.togglePopUp(".et-pop-up");
-  },
+  }
 };
 
 const setUpListeners = {
@@ -252,6 +230,9 @@ const setUpListeners = {
     let overlay = document.querySelector("#overlay");
     let groupPopUp = document.querySelector(".ng-pop-up");
     let newGroupFormBtn = document.querySelector("#add-group-nav-btn");
+    let newGroupBtn = document.querySelector("#new-group-btn");
+
+    newGroupBtn.addEventListener("click", processForms.newGroup);
 
     let toggleForm = () => {
       overlay.classList.toggle("overlay-active");
@@ -295,7 +276,7 @@ const setUpListeners = {
     editTaskBtns.forEach((btn) => {
       btn.addEventListener("click", render.editTaskForm);
     });
-    
+
     let editTaskSubmitBtn = document.querySelector("#edit-task-form-btn");
     editTaskSubmitBtn.addEventListener("click", processForms.editTask);
 
@@ -303,11 +284,11 @@ const setUpListeners = {
     editTaskDeleteBtn.addEventListener("click", processForms.deleteTask);
   },
   completeBtns: () => {
-      let completeBtns = document.querySelectorAll(".todo-complete");
-      completeBtns.forEach(btn => {
-          btn.addEventListener("click", processForms.completedStatus)
-      })
-  }
+    let completeBtns = document.querySelectorAll(".todo-complete");
+    completeBtns.forEach((btn) => {
+      btn.addEventListener("click", processForms.completedStatus);
+    });
+  },
 };
 
 export { createDom, render, setUpListeners };
